@@ -1,0 +1,115 @@
+# Guarded PR-MaGIC framework figure.
+# Archetype: CVPR double-column pipeline with a gated contribution stage.
+# No external image assets are used; the inputs are abstract data slabs because
+# the local workspace does not contain the real query/support crops.
+figure:
+  id: guarded_prmagic_framework
+  venue: cvpr
+  width: double
+  font: times
+  pad: 3
+
+layout: row
+gap: 7
+
+panels:
+  - id: s_input
+    title: "Reference-\nconditioned input"
+    frame: dashed
+    valign: top
+    body:
+      - col:
+          gap: 8
+          align: center
+          body:
+            - {id: support, shape: parallelogram, text: "Support image\n+ mask", role: input, w: 51, h: 25}
+            - {id: query, shape: parallelogram, text: "Query image", role: input, w: 51, h: 25}
+
+  - id: s_generate
+    title: "Training-free candidate generation"
+    frame: dashed
+    valign: top
+    body:
+      - row:
+          gap: 7
+          align: center
+          body:
+            - {id: encoder, shape: trapezoid, text: "Frozen\nencoder", role: encoder, w: 38, h: 25}
+            - {id: features, shape: slab, n: 4, cell: 6, cellh: 23, role: encoder, caption: "query features"}
+      - {id: gap_g, shape: spacer, h: 6, w: 4}
+      - group:
+          id: refinement_loop
+          fill: blue.pale
+          frame: region
+          frame_color: blue.deep
+          badge: "x5"
+          gap: 5
+          pad: 6
+          body:
+            - {id: update, text: "Gradient-flow update", role: encoder, tint: light}
+            - {id: decoder, shape: invtrapezoid, text: "Mask decoder", role: encoder, w: 54, h: 22}
+            - {id: candidates, shape: slab, n: 6, cell: 6, cellh: 25, role: neutral, caption: "candidate masks"}
+
+  - id: s_rank
+    title: "Original candidate selector"
+    frame: dashed
+    valign: top
+    body:
+      - {id: score, text: "Original score S_orig(t)", role: neutral, tint: light}
+      - {id: terms, text: "support + confidence + foreground", role: neutral, size: 6.2}
+      - {id: rank_pool, shape: slab, n: 6, cell: 6, cellh: 24, role: neutral, caption: "rank candidates"}
+      - {id: proposal, text: "Selected proposal", role: neutral}
+
+  - id: s_gate
+    title: "Baseline-relative gate (ours)"
+    frame: dashed
+    fill: gold.pale
+    frame_color: gold.deep
+    valign: top
+    body:
+      - group:
+          id: gate_region
+          fill: gold.pale
+          frame: region
+          frame_color: gold.deep
+          badge: "ours"
+          gap: 5
+          pad: 7
+          body:
+            - {id: compare, text: "Compare with baseline M0", role: ours, tint: light}
+            - {id: check, shape: hexagon, text: "Baseline-relative check", role: ours, tint: mid, w: 78, h: 28}
+            - row:
+                gap: 6
+                body:
+                  - {id: accept, text: "Pass: accept mask", role: ours, tint: light, size: 6.0}
+                  - {id: fallback, text: "Fail: return M0", role: baseline, tint: light, size: 6.0}
+
+edges:
+  - {from: support.e, to: encoder.nw, route: hv, color: input}
+  - {from: query.e, to: encoder.sw, route: hv, color: input}
+  - {from: encoder.e, to: features.w, color: encoder}
+  - {from: features.s, to: refinement_loop.n, color: encoder}
+  - {from: update, to: decoder, color: encoder}
+  - {from: decoder, to: candidates, color: encoder}
+  - {from: candidates.e, to: score.w, route: hv, color: neutral}
+  - {from: score, to: terms, color: neutral}
+  - {from: terms, to: rank_pool, color: neutral}
+  - {from: rank_pool, to: proposal, color: neutral}
+  - {from: proposal.e, to: gate_region.w, route: hv, color: gold.deep, lw: emphasis}
+  - {from: compare, to: check, color: gold.deep, lw: box}
+  - {from: check.s, to: accept.n, route: vh, color: ours, lw: box}
+  - {from: check.s, to: fallback.n, route: vh, color: baseline, lw: box}
+
+notes:
+  - {text: "Query ground truth is used only for evaluation", near: s_gate.s, dy: -5, size: 6.0, color: muted}
+
+legend:
+  corner: se
+  dir: row
+  size: 5.8
+  box: false
+  items:
+    - {text: "frozen / input", color: encoder, kind: swatch}
+    - {text: "selector", color: neutral, kind: swatch}
+    - {text: "ours", color: ours, kind: swatch}
+    - {text: "baseline fallback", color: baseline, kind: swatch}

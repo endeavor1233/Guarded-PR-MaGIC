@@ -1,0 +1,4 @@
+method,mean_miou,gain_vs_baseline,non_degradation_rate,mean_selected_iter
+Baseline,0.534116,0.000000,,0.000000
+Original selector,0.565631,0.031515,0.673750,2.450000
+support_fg gate,0.565267,0.031151,0.824500,1.568500

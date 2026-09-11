@@ -1,0 +1,757 @@
+{
+  "pdf": "figures\\generated\\benchmark_summary.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 51,
+  "text_trace_count": 51,
+  "stroke_path_count": 117,
+  "filled_region_count": 102,
+  "image_region_count": 0,
+  "summary": {
+    "fail": 15,
+    "warn": 14,
+    "contained_fill_overlays": 9,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 4 stroked path(s)",
+      "text": "FSS-1000",
+      "text_bbox": [
+        54.63370895385742,
+        274.3067321777344,
+        88.6610107421875,
+        282.8067321777344
+      ],
+      "other_text": null,
+      "other_bbox": [
+        50.460411071777344,
+        67.22039794921875,
+        92.8382568359375,
+        461.3372497558594
+      ],
+      "object_count": 4,
+      "object_indexes": [
+        19,
+        34,
+        47,
+        54
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 4 stroked path(s)",
+      "text": "COCO-20i",
+      "text_bbox": [
+        108.75340270996094,
+        274.3194274902344,
+        146.0653076171875,
+        282.8194274902344
+      ],
+      "other_text": null,
+      "other_bbox": [
+        106.22073364257812,
+        187.31338500976562,
+        148.59857177734375,
+        461.3372497558594
+      ],
+      "object_count": 4,
+      "object_indexes": [
+        22,
+        37,
+        48,
+        57
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 4 stroked path(s)",
+      "text": "Pascal-5i",
+      "text_bbox": [
+        167.59967041015625,
+        274.3194274902344,
+        198.74508666992188,
+        282.8194274902344
+      ],
+      "other_text": null,
+      "other_bbox": [
+        161.98106384277344,
+        138.88494873046875,
+        204.35890197753906,
+        461.3372497558594
+      ],
+      "object_count": 4,
+      "object_indexes": [
+        25,
+        40,
+        49,
+        60
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 4 stroked path(s)",
+      "text": "FSS-1000",
+      "text_bbox": [
+        221.9146728515625,
+        283.9587097167969,
+        255.9419708251953,
+        292.4587097167969
+      ],
+      "other_text": null,
+      "other_bbox": [
+        217.7413787841797,
+        65.21829223632812,
+        260.1192321777344,
+        461.3372497558594
+      ],
+      "object_count": 4,
+      "object_indexes": [
+        28,
+        43,
+        50,
+        63
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 4 stroked path(s)",
+      "text": "Matcher",
+      "text_bbox": [
+        224.7818603515625,
+        274.9565124511719,
+        253.0851287841797,
+        283.4565124511719
+      ],
+      "other_text": null,
+      "other_bbox": [
+        217.7413787841797,
+        65.21829223632812,
+        260.1192321777344,
+        461.3372497558594
+      ],
+      "object_count": 4,
+      "object_indexes": [
+        28,
+        43,
+        50,
+        63
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 4 stroked path(s)",
+      "text": "COCO-20i",
+      "text_bbox": [
+        276.03436279296875,
+        283.9714050292969,
+        313.3462829589844,
+        292.4714050292969
+      ],
+      "other_text": null,
+      "other_bbox": [
+        273.501708984375,
+        145.32032775878906,
+        315.8795471191406,
+        461.3372497558594
+      ],
+      "object_count": 4,
+      "object_indexes": [
+        31,
+        46,
+        51,
+        66
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 4 stroked path(s)",
+      "text": "Matcher",
+      "text_bbox": [
+        280.54217529296875,
+        274.9565124511719,
+        308.845458984375,
+        283.4565124511719
+      ],
+      "other_text": null,
+      "other_bbox": [
+        273.501708984375,
+        145.32032775878906,
+        315.8795471191406,
+        461.3372497558594
+      ],
+      "object_count": 4,
+      "object_indexes": [
+        31,
+        46,
+        51,
+        66
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 4 stroked path(s)",
+      "text": "Quality, non-degradation, and fallback across candidate generators",
+      "text_bbox": [
+        334.515380859375,
+        5.817784309387207,
+        667.5359497070312,
+        18.31778335571289
+      ],
+      "other_text": null,
+      "other_bbox": [
+        324.0,
+        -36.0,
+        684.0,
+        108.0
+      ],
+      "object_count": 4,
+      "object_indexes": [
+        139,
+        142,
+        146,
+        148
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "Baseline",
+      "text_bbox": [
+        403.0763244628906,
+        29.3333797454834,
+        430.6153869628906,
+        37.333377838134766
+      ],
+      "other_text": null,
+      "other_bbox": [
+        324.0,
+        -36.0,
+        468.0,
+        36.0
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        139
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "Original",
+      "text_bbox": [
+        469.007568359375,
+        29.3333797454834,
+        495.67022705078125,
+        37.333377838134766
+      ],
+      "other_text": null,
+      "other_bbox": [
+        431.3999938964844,
+        -36.0,
+        612.0,
+        108.0
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        142,
+        146
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 4 stroked path(s)",
+      "text": "Non-degradation rate",
+      "text_bbox": [
+        473.3772888183594,
+        29.3333797454834,
+        561.6117553710938,
+        45.374473571777344
+      ],
+      "other_text": null,
+      "other_bbox": [
+        431.3999938964844,
+        -36.0,
+        684.0,
+        108.0
+      ],
+      "object_count": 4,
+      "object_indexes": [
+        142,
+        144,
+        146,
+        148
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "Guarded",
+      "text_bbox": [
+        534.0638427734375,
+        28.63200569152832,
+        561.6117553710938,
+        37.504005432128906
+      ],
+      "other_text": null,
+      "other_bbox": [
+        468.0,
+        -36.0,
+        684.0,
+        108.0
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        146,
+        148
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "Oracle",
+      "text_bbox": [
+        600.0106811523438,
+        29.3333797454834,
+        621.3294677734375,
+        37.333377838134766
+      ],
+      "other_text": null,
+      "other_bbox": [
+        468.0,
+        -36.0,
+        684.0,
+        108.0
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        146,
+        148
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-text",
+      "page": 1,
+      "message": "Text boxes overlap by 83.6% of the smaller box",
+      "text": "Non-degradation rate",
+      "text_bbox": [
+        473.3772888183594,
+        29.3333797454834,
+        561.6117553710938,
+        45.374473571777344
+      ],
+      "other_text": "Original",
+      "other_bbox": [
+        469.007568359375,
+        29.3333797454834,
+        495.67022705078125,
+        37.333377838134766
+      ],
+      "object_count": 1,
+      "object_indexes": []
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-text",
+      "page": 1,
+      "message": "Text boxes overlap by 92.1% of the smaller box",
+      "text": "Non-degradation rate",
+      "text_bbox": [
+        473.3772888183594,
+        29.3333797454834,
+        561.6117553710938,
+        45.374473571777344
+      ],
+      "other_text": "Guarded",
+      "other_bbox": [
+        534.0638427734375,
+        28.63200569152832,
+        561.6117553710938,
+        37.504005432128906
+      ],
+      "object_count": 1,
+      "object_indexes": []
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "FSS-1000",
+      "text_bbox": [
+        54.63370895385742,
+        274.3067321777344,
+        88.6610107421875,
+        282.8067321777344
+      ],
+      "other_text": null,
+      "other_bbox": [
+        71.64933013916016,
+        83.95333862304688,
+        82.2437973022461,
+        461.3372497558594
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        47000
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "COCO-20i",
+      "text_bbox": [
+        108.75340270996094,
+        274.3194274902344,
+        146.0653076171875,
+        282.8194274902344
+      ],
+      "other_text": null,
+      "other_bbox": [
+        127.40965270996094,
+        218.48538208007812,
+        138.00411987304688,
+        461.3372497558594
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        48000
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "Pascal-5i",
+      "text_bbox": [
+        167.59967041015625,
+        274.3194274902344,
+        198.74508666992188,
+        282.8194274902344
+      ],
+      "other_text": null,
+      "other_bbox": [
+        183.16998291015625,
+        174.19546508789062,
+        193.76443481445312,
+        461.3372497558594
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        49000
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "FSS-1000",
+      "text_bbox": [
+        221.9146728515625,
+        283.9587097167969,
+        255.9419708251953,
+        292.4587097167969
+      ],
+      "other_text": null,
+      "other_bbox": [
+        238.9302978515625,
+        72.62812805175781,
+        249.52476501464844,
+        461.3372497558594
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        50000
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "Matcher",
+      "text_bbox": [
+        224.7818603515625,
+        274.9565124511719,
+        253.0851287841797,
+        283.4565124511719
+      ],
+      "other_text": null,
+      "other_bbox": [
+        238.9302978515625,
+        72.62812805175781,
+        249.52476501464844,
+        461.3372497558594
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        50000
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "COCO-20i",
+      "text_bbox": [
+        276.03436279296875,
+        283.9714050292969,
+        313.3462829589844,
+        292.4714050292969
+      ],
+      "other_text": null,
+      "other_bbox": [
+        294.69061279296875,
+        163.14356994628906,
+        305.28509521484375,
+        461.3372497558594
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        51000
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "Matcher",
+      "text_bbox": [
+        280.54217529296875,
+        274.9565124511719,
+        308.845458984375,
+        283.4565124511719
+      ],
+      "other_text": null,
+      "other_bbox": [
+        294.69061279296875,
+        163.14356994628906,
+        305.28509521484375,
+        461.3372497558594
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        51000
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 8 filled region(s)",
+      "text": "Quality, non-degradation, and fallback across candidate generators",
+      "text_bbox": [
+        334.515380859375,
+        5.817784309387207,
+        667.5359497070312,
+        18.31778335571289
+      ],
+      "other_text": null,
+      "other_bbox": [
+        324.0,
+        -36.0,
+        684.0,
+        108.0
+      ],
+      "object_count": 8,
+      "object_indexes": [
+        138000,
+        139,
+        141000,
+        142,
+        145000,
+        146,
+        147000,
+        148
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "1.00",
+      "text_bbox": [
+        348.1389465332031,
+        45.52774429321289,
+        363.0139465332031,
+        54.02774429321289
+      ],
+      "other_text": null,
+      "other_bbox": [
+        360.0,
+        0.0,
+        432.0,
+        72.0
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        138000
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "Baseline",
+      "text_bbox": [
+        403.0763244628906,
+        29.3333797454834,
+        430.6153869628906,
+        37.333377838134766
+      ],
+      "other_text": null,
+      "other_bbox": [
+        324.0,
+        -36.0,
+        468.0,
+        36.0
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        139
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 5 filled region(s)",
+      "text": "Non-degradation rate",
+      "text_bbox": [
+        473.3772888183594,
+        29.3333797454834,
+        561.6117553710938,
+        45.374473571777344
+      ],
+      "other_text": null,
+      "other_bbox": [
+        431.3999938964844,
+        -36.0,
+        684.0,
+        108.0
+      ],
+      "object_count": 5,
+      "object_indexes": [
+        141000,
+        142,
+        144000,
+        145000,
+        148
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "Guarded",
+      "text_bbox": [
+        534.0638427734375,
+        28.63200569152832,
+        561.6117553710938,
+        37.504005432128906
+      ],
+      "other_text": null,
+      "other_bbox": [
+        540.0,
+        -36.0,
+        684.0,
+        108.0
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        148
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "Oracle",
+      "text_bbox": [
+        600.0106811523438,
+        29.3333797454834,
+        621.3294677734375,
+        37.333377838134766
+      ],
+      "other_text": null,
+      "other_bbox": [
+        468.0,
+        -36.0,
+        612.0,
+        108.0
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        146
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "0.45",
+      "text_bbox": [
+        680.9634399414062,
+        85.31541442871094,
+        695.8384399414062,
+        93.81541442871094
+      ],
+      "other_text": null,
+      "other_bbox": [
+        540.0,
+        -36.0,
+        684.0,
+        108.0
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        148
+      ]
+    }
+  ]
+}

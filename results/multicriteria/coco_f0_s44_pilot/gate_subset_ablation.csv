@@ -1,0 +1,6 @@
+seed,method,num_samples,mean_selected_miou,mean_baseline_miou,mean_oracle_miou,gain_over_baseline,non_degradation_rate,oracle_gap_closure,mean_selected_iter,fallback_rate
+44,original_gate_none,300,0.537216,0.527722,0.622265,0.009494,0.613333,0.100420,2.586667,0.000000
+44,original_gate_support_only,300,0.541682,0.527722,0.622265,0.013959,0.740000,0.147651,1.990000,0.210000
+44,original_gate_fg_only,300,0.534526,0.527722,0.622265,0.006804,0.683333,0.071968,2.143333,0.150000
+44,original_gate_support_fg,300,0.538756,0.527722,0.622265,0.011033,0.796667,0.116701,1.603333,0.340000
+44,original_gate_all_four,300,0.527722,0.527722,0.622265,0.000000,1.000000,0.000000,0.000000,0.863333

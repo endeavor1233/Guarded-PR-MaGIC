@@ -1,0 +1,2 @@
+obj_name,original_iter,guarded_iter,original_fallback,guarded_fallback,original_miou,guarded_miou,baseline_miou,oracle_miou,original_gate_margin,guarded_gate_margin
+2_class-1,4,0,0,1,0.7667556405067444,0.7469295859336853,0.7469295859336853,0.8922077417373657,-0.0012629032135009766,-0.0012629032135009766

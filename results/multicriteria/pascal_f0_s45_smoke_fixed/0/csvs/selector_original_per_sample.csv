@@ -1,0 +1,2 @@
+obj_name,selector,selected_iter,pre_fallback_iter,fallback_applied,selector_miou,baseline_miou,oracle_miou,support_query_selected,decoder_confidence_selected,temporal_stability_selected,foreground_background_separation_selected
+0_class-0,original,4,4,False,0.0,0.0,0.0,0.9955344200134277,0.9914207458496094,0.993430564362714,0.9782824516296387

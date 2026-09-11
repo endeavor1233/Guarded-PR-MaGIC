@@ -1,0 +1,57 @@
+# Single-column overview for Guarded PR-MaGIC.
+# Archetype: compact gated pipeline; no external image assets.
+figure:
+  id: guarded_prmagic_graphical_abstract
+  venue: cvpr
+  width: single
+  font: times
+  pad: 3
+  pad_top: 4
+
+layout: grid
+cols: 2
+gap: 10
+
+panels:
+  - id: pool
+    title: "Candidate pool"
+    frame: dashed
+    valign: middle
+    body:
+      - {id: masks, shape: slab, n: 6, cell: 7, cellh: 28, role: neutral, caption: "baseline M0 + refinements"}
+      - {id: source, text: "training-free refinement", role: encoder, size: 6.4}
+
+  - id: selector
+    title: "Original selector"
+    frame: dashed
+    valign: middle
+    body:
+      - {id: score, text: "S_orig(t)", role: attention, tint: light}
+      - {id: proposal, text: "selected candidate", role: neutral, size: 5.6}
+
+  - id: final
+    title: "Final output"
+    frame: dashed
+    valign: middle
+    body:
+      - {id: accept, text: "accept selected mask", role: ours, tint: light, size: 6.2}
+      - {id: fallback, text: "return baseline M0", role: baseline, tint: light, size: 6.2}
+
+  - id: gate
+    title: "Baseline-relative gate"
+    frame: dashed
+    fill: gold.pale
+    frame_color: gold.deep
+    valign: middle
+    body:
+      - {id: margin, text: "compare to M0", role: core, tint: light}
+      - {id: check, shape: hexagon, text: "support + foreground\nnot worse", role: core, tint: mid, w: 66, h: 25}
+
+edges:
+  - {from: source, to: masks, color: encoder, lw: box}
+  - {from: masks, to: score, color: neutral}
+  - {from: score, to: proposal, color: attention}
+  - {from: proposal.e, to: margin.e, route: hv, color: gold.deep, lw: emphasis}
+  - {from: margin, to: check, color: gold.deep, lw: box}
+  - {from: check.w, to: accept.e, color: ours, lw: flow}
+  - {from: check.w, to: fallback.e, color: baseline, lw: flow}

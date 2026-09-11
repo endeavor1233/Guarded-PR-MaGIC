@@ -1,0 +1,210 @@
+{
+  "pdf": "figures\\generated\\cvpr_guarded_prmagic_framework.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 29,
+  "text_trace_count": 28,
+  "stroke_path_count": 84,
+  "filled_region_count": 80,
+  "image_region_count": 0,
+  "summary": {
+    "fail": 6,
+    "warn": 2,
+    "contained_fill_overlays": 29,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "Support image",
+      "text_bbox": [
+        15.867188453674316,
+        30.916635513305664,
+        56.893123626708984,
+        46.1744499206543
+      ],
+      "other_text": null,
+      "other_bbox": [
+        11.0,
+        25.801000595092773,
+        62.0,
+        50.80099868774414
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        2
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "x5",
+      "text_bbox": [
+        179.81640625,
+        88.51057434082031,
+        185.48040771484375,
+        94.51057434082031
+      ],
+      "other_text": null,
+      "other_bbox": [
+        109.28900146484375,
+        91.89800262451172,
+        183.35899353027344,
+        107.3010025024414
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        19
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "ours",
+      "text_bbox": [
+        471.2890625,
+        28.409013748168945,
+        481.9580383300781,
+        34.40901184082031
+      ],
+      "other_text": null,
+      "other_bbox": [
+        384.125,
+        32.80099868774414,
+        474.14801025390625,
+        48.202999114990234
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        63
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-text",
+      "page": 1,
+      "message": "Text boxes overlap by 98.1% of the smaller box",
+      "text": "Reference-",
+      "text_bbox": [
+        7.984376907348633,
+        1.4211703538894653,
+        64.54866790771484,
+        17.322734832763672
+      ],
+      "other_text": "conditioned input",
+      "other_bbox": [
+        7.984376907348633,
+        8.850982666015625,
+        64.54998016357422,
+        17.48558235168457
+      ],
+      "object_count": 1,
+      "object_indexes": []
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-text",
+      "page": 1,
+      "message": "Text boxes overlap by 98.1% of the smaller box",
+      "text": "Support image",
+      "text_bbox": [
+        15.867188453674316,
+        30.916635513305664,
+        56.893123626708984,
+        46.1744499206543
+      ],
+      "other_text": "+ mask",
+      "other_bbox": [
+        26.1796875,
+        38.571598052978516,
+        46.65468978881836,
+        46.32059860229492
+      ],
+      "object_count": 1,
+      "object_indexes": []
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-text",
+      "page": 1,
+      "message": "Text boxes overlap by 98.1% of the smaller box",
+      "text": "Frozen",
+      "text_bbox": [
+        113.09765625,
+        36.46741485595703,
+        135.25271606445312,
+        51.7252311706543
+      ],
+      "other_text": "encoder",
+      "other_bbox": [
+        113.09765625,
+        44.122379302978516,
+        135.25265502929688,
+        51.87137985229492
+      ],
+      "object_count": 1,
+      "object_indexes": []
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "x5",
+      "text_bbox": [
+        179.81640625,
+        88.51057434082031,
+        185.48040771484375,
+        94.51057434082031
+      ],
+      "other_text": null,
+      "other_bbox": [
+        109.28900146484375,
+        91.89800262451172,
+        183.35899353027344,
+        107.3010025024414
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        19
+      ]
+    },
+    {
+      "severity": "WARN",
+      "kind": "text-fill-edge",
+      "page": 1,
+      "message": "Text partially overlaps the edge of 1 filled region(s)",
+      "text": "ours",
+      "text_bbox": [
+        471.2890625,
+        28.409013748168945,
+        481.9580383300781,
+        34.40901184082031
+      ],
+      "other_text": null,
+      "other_bbox": [
+        384.125,
+        32.80099868774414,
+        474.14801025390625,
+        48.202999114990234
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        63
+      ]
+    }
+  ]
+}

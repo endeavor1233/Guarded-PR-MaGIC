@@ -1,0 +1,245 @@
+# PR-MaGIC: Prompt Refinement Via Mask Decoder Gradient Flow For In-Context Segmentation
+
+**Minjae Lee\*, Sungwoo Hur\*, Soojin Hwang, Won Hwa Kim**
+Pohang University of Science and Technology (POSTECH)
+\* Equal contribution
+
+[[Project Page](https://postech-minjaelee.github.io/PR-MaGIC/)] [[Paper](paper.pdf)]
+
+---
+
+## Overview
+
+PR-MaGIC is a **training-free, test-time** prompt refinement framework for in-context (one/few-shot) segmentation. It improves the prompt quality of existing auto-prompting segmentation methods (PerSAM-F, Matcher) by iteratively updating the query image embedding via **gradient flow derived from SAM's mask decoder**, then selecting the best candidate mask using top-1 support–query similarity.
+
+![Method Overview](docs/static/images/method_overview.png)
+
+### Key features
+
+- **Training-free**: no learnable parameters, no architectural modifications, no extra data.
+- **Plug-and-play**: integrates directly into PerSAM-F and Matcher without modifying their code.
+- **Top-1 mask selection**: among T candidate masks, selects the one most similar to the support embedding, providing robustness against step-size sensitivity and sample variability.
+
+---
+
+## Results
+
+mIoU (%) on six benchmarks. **B** = Baseline, **T** = PR-MaGIC (Top-1 selection), **O** = PR-MaGIC (Oracle).
+
+| Method | FSS B/T/O | COCO B/T/O | LVIS B/T/O | PACO B/T/O | Pascal B/T/O | DIS B/T/O |
+|---|---|---|---|---|---|---|
+| PerSAM-F | 58.41 / **67.19** / 72.45 | 44.64 / **46.83** / 51.74 | 42.37 / **44.48** / 47.29 | 39.60 / **40.72** / 43.39 | 42.72 / **43.87** / 46.43 | 46.82 / **49.99** / 53.46 |
+| Matcher (1-shot) | 92.08 / 92.06 / 93.55 | 69.53 / **71.23** / 76.14 | 59.39 / **61.52** / 64.75 | 50.27 / **54.08** / 56.71 | 54.76 / **58.28** / 61.13 | 46.65 / **55.08** / 58.10 |
+| Matcher (5-shot) | 93.26 / **93.41** / 94.32 | 67.69 / **70.74** / 74.88 | 57.14 / **60.79** / 63.88 | 48.66 / **53.15** / 55.30 | 54.54 / **59.27** / 61.55 | — |
+
+---
+
+## ⚠️ Correction Notice (PerSAM-F results)
+
+The optimal number of prompt points for **PerSAM-F** is a *single* point. However, our method generates new prompts by **moving** points over the mask-decoder-gradient-refined similarity map, so a single point is not enough for the method to operate correctly. We therefore create additional prompt points from the **99% and 90% quantile bands of the similarity map**, and let the refinement process proceed on top of these points.
+
+In the initial commit and the arXiv version, the reported **PerSAM-F** numbers were **incorrect due to a coordinate bug in `point_selection`**: the extra prompt points sampled from the similarity map were assigned **transposed `(x, y)` coordinates** — they were appended as `[row, col]` (and de-duplicated with a flat index of `col*H + row`) instead of `[col, row]` (index `row*H + col`), which is the `[x, y]` order that SAM's `predict` and the top-1 point already use. As a result, every additional prompt point was placed at a mirrored/transposed location in the image, corrupting the prompt set that PR-MaGIC refines. As an urgent fix, we corrected the coordinate order (and the de-duplication index) and report below a **single fixed-random-seed** experiment on **FSS-1000** and **PASCAL-Part**. As the results show, the effect of our method is **always to yield better segmentation results**. The corrected full tables will be released in a new arXiv version.
+
+### Revised results (our setting)
+
+mIoU (%), single fixed random seed. **PR-MaGIC gain** = PR-MaGIC − Baseline (percentage points). We report PerSAM-F's results using only the top-1 point **for reference only**, as the top-1 point is PerSAM-F's own optimal setting rather than ours.
+
+**FSS-1000** (fold 0)
+
+| Setting | Baseline | PR-MaGIC | Oracle | PR-MaGIC gain |
+|---|---|---|---|---|
+| PerSAM-F (top-1 point, reference) | 85.10 | 85.87 | 87.53 | +0.77 |
+| **Ours (revised, 99/90 points)** | 85.77 | **87.42** | 91.89 | **+1.65** |
+
+**PASCAL-Part** (mean over folds 0–3)
+
+| Setting | Baseline | PR-MaGIC | Oracle | PR-MaGIC gain |
+|---|---|---|---|---|
+| PerSAM-F (top-1 point, reference) | 51.12 | 51.52 | 52.61 | +0.40 |
+| **Ours (revised, 99/90 points)** | 49.46 | **52.38** | 58.13 | **+2.92** |
+
+---
+
+## Installation
+
+```bash
+git clone https://github.com/POSTECH-MinjaeLee/PR-MaGIC.git
+cd PR-MaGIC
+
+conda env create -f env.yml
+conda activate pr-magic
+```
+
+**Python 3.10 / PyTorch 2.0.1 / CUDA 11.7**
+
+---
+
+## Weights
+
+```bash
+bash scripts/download_weights.sh          # download SAM ViT-H + DINOv2 ViT-L/14
+# or individually:
+bash scripts/download_weights.sh --sam
+bash scripts/download_weights.sh --dinov2
+```
+
+Weights are saved to `weights/`:
+```
+weights/
+├── sam_vit_h_4b8939.pth
+└── dinov2_vitl14_pretrain.pth
+```
+
+---
+
+## Data Preparation
+
+Run the following to see download instructions for all six datasets:
+
+```bash
+bash scripts/prepare_data.sh
+```
+
+Expected `data/` structure after setup:
+
+```
+data/
+├── COCO2014/
+│   ├── train2014/  val2014/
+│   └── annotations/{train2014,val2014}/  splits/
+├── FSS-1000/
+│   └── data/{class}/  splits/{trn,val,test}.txt
+├── LVIS/
+│   └── coco/{train2017,val2017}/  lvis_{train,val}.pkl
+├── PACO-Part/
+│   └── coco/{train2017,val2017}/  paco/paco_part_{train,val}.pkl
+├── Pascal-Part/
+│   └── VOCdevkit/VOC2010/
+└── DIS5K/
+    ├── Train/{im,gt}/{1-1,...,1-210}/
+    └── Test/{im,gt}/
+```
+
+For DIS5K, reorganize into the class-subdirectory format after downloading:
+
+```bash
+python scripts/prepare_dis5k.py --dis5k_root <path>/DIS5K
+ln -s <path>/DIS5K data/DIS5K
+```
+
+---
+
+## Running
+
+### PerSAM-F + PR-MaGIC
+
+```bash
+# Single run (from Personalize-SAM/)
+cd Personalize-SAM
+python pr_magic_for_persam.py \
+    --benchmark fss --fold 0 --seed 42 \
+    --points_num 5 --nested 6 \
+    --max_samples 100 \
+    --eta 1e-3 --gamma 1e-1 \
+    --alpha_list 0.0 --beta_list 0.0 \
+    --log-root ../results/persam/fss/f0_s42
+
+# All benchmarks via launcher (from PR-MaGIC root)
+python scripts/launch_persam_pr.py --benchmarks fss coco lvis --gpus 0,1,2
+```
+
+### Matcher + PR-MaGIC
+
+```bash
+# Single run (from Matcher/)
+cd Matcher
+python pr_magic_for_matcher.py \
+    --benchmark fss --fold 0 --seed 42 \
+    --nshot 1 --nested 6 \
+    --eta 1e-3 --gamma 1e-1 \
+    --alpha 0.8 --beta 0.2 --exp 1.0 \
+    --num_merging_mask 10 \
+    --alpha_list 0.0 --beta_list 0.0 \
+    --log-root ../results/matcher/fss/f0_n1_s42
+
+# All benchmarks via launcher (from PR-MaGIC root)
+python scripts/launch_matcher_pr.py --benchmarks fss coco lvis --gpus 0,1,2
+```
+
+### Hyperparameters
+
+| Setting | η | γ | T (Includes first result) | points (PerSAM) | num_centers (Matcher) |
+|---|---|---|---|---|---|
+| Semantic (FSS, COCO, LVIS) | 1e-3 | 0.1 | 6 | 5 | 8 |
+| Part (PACO, Pascal, DIS) | 1e-4 | 0.1 | 6 | 3 | 5 |
+
+### Minimal multi-criteria selector (PerSAM-F)
+
+The minimal prototype records one candidate per refinement iteration and
+compares the original support-query Top-1 selector with rank-based
+multi-criteria selection. The four scores are masked support-query
+similarity, SAM decoder confidence, temporal mask stability, and
+foreground-background separation. Candidate 0 is always the unrefined
+baseline; the default fallback can return to it when a selected candidate
+loses on most criteria.
+
+Run the model once and save all candidate records:
+
+```bash
+cd /home/kasm-user/workspace/ssd1/zzr/PR-MaGIC-main/Personalize-SAM
+python /home/kasm-user/workspace/ssd1/zzr/PR-MaGIC-main/Personalize-SAM/pr_magic_for_persam.py \
+    --datapath /home/kasm-user/workspace/ssd1/zzr/PR-MaGIC-main/data \
+    --ckpt /home/kasm-user/workspace/ssd1/zzr/PR-MaGIC-main/weights/sam_vit_h_4b8939.pth \
+    --benchmark fss --fold 0 --seed 42 \
+    --points_num 5 --nested 6 \
+    --eta 1e-3 --gamma 1e-1 \
+    --selector original \
+    --log-root /home/kasm-user/workspace/ssd1/zzr/PR-MaGIC-main/results/multicriteria/fss_f0_s42
+```
+
+Then compare selectors without another GPU run:
+
+```bash
+python /home/kasm-user/workspace/ssd1/zzr/PR-MaGIC-main/scripts/analyze_multicriteria_candidates.py \
+    --candidate-csv /home/kasm-user/workspace/ssd1/zzr/PR-MaGIC-main/results/multicriteria/fss_f0_s42/0/csvs/selector_original_candidates.csv \
+    --output-csv /home/kasm-user/workspace/ssd1/zzr/PR-MaGIC-main/results/multicriteria/fss_f0_s42/0/csvs/multicriteria_analysis.csv
+```
+
+The model run writes per-sample and per-candidate CSV files. The offline
+analysis reports mIoU, gain over baseline, non-degradation rate, oracle-gap
+closure, selected iteration, and fallback rate.
+
+### FSS-1000 splits
+
+The public 520/240/240 category split used by the Matcher release can be
+prepared with:
+
+```bash
+python /home/kasm-user/workspace/ssd1/zzr/PR-MaGIC-main/scripts/prepare_fss_splits.py \
+    --fss-root /home/kasm-user/workspace/ssd1/zzr/fewshot_data/FSS-1000
+```
+
+The script downloads and validates `trn.txt`, `val.txt`, and `test.txt` from
+the public Matcher repository. It does not move image data. The loader still
+expects the standard layout `FSS-1000/data/<class>/`; if the raw archive is
+flat, create that directory and add links to the class directories before
+running the benchmark.
+
+---
+
+## Citation
+
+```bibtex
+@inproceedings{lee2025prmagic,
+  title     = {PR-MaGIC: Prompt Refinement Via Mask Decoder Gradient Flow For In-Context Segmentation},
+  author    = {Lee, Minjae and Hur, Sungwoo and Hwang, Soojin and Kim, Won Hwa},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year      = {2026}
+}
+```
+
+---
+
+## Acknowledgements
+
+This repository builds on [PerSAM](https://github.com/ZrrSkywalker/Personalize-SAM) and [Matcher](https://github.com/aim-uofa/Matcher). We thank the authors for their excellent work.
